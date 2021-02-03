@@ -1,5 +1,5 @@
 import VideoList from './VideoList.js';
-
+import exampleVideoData from '../data/exampleVideoData.js';
 
 class App extends React.Component {
 
@@ -20,7 +20,7 @@ class App extends React.Component {
             <div><h5><em>testing video player</em> view goes here</h5></div>
           </div>
           <div className="col-md-5">
-            <VideoList />
+            <VideoList videos={exampleVideoData}/>
           </div>
         </div>
       </div>
