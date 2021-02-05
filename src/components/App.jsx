@@ -2,13 +2,27 @@ import VideoList from './VideoList.js';
 import exampleVideoData from '../data/exampleVideoData.js';
 import fakeVideoData from '../../spec/data/fakeVideoData.js';
 import VideoPlayer from './VideoPlayer.js';
+import VideoListEntry from './VideoListEntry.js';
 
+window.video = exampleVideoData[0];
 
 class App extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      video: exampleVideoData[0]
+    };
+    this.test = this.test.bind(this);
   }
+
+  test(video) {
+    this.setState({
+      video: video,
+    });
+  }
+
+
 
   render() {
     return (
@@ -20,12 +34,12 @@ class App extends React.Component {
         </nav>
         <div className="row">
           <div className="col-md-7">
-            <VideoPlayer video={exampleVideoData[0]}>
+            <VideoPlayer video={this.state.video}>
             </VideoPlayer>
           </div>
           <div className="col-md-5">
             <div>
-              <VideoList videos={exampleVideoData}>
+              <VideoList videos={exampleVideoData} func={this.test}>
               </VideoList>
             </div>
           </div>

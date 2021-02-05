@@ -7,7 +7,7 @@ import exampleVideoData from '../data/exampleVideoData.js';
 const VideoList = (props) => (
   <div className="video-list">
     {props.videos.map(video =>
-      <VideoListEntry video={video} key={video.id.videoId}></VideoListEntry>
+      <VideoListEntry video={video} key={video.id.videoId} func={props.func}></VideoListEntry>
     )
     }
   </div>
