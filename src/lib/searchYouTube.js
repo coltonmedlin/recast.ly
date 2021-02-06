@@ -1,15 +1,21 @@
+import YOUTUBE_API_KEY from '../config/youtube.js';
+
 var searchYouTube = (options, callback) => {
-  // TODO
   $.ajax({
-    url: `https://www.googleapis.com/youtube/v3/search?key=${ytKey}`,
+    url: `https://youtube.googleapis.com/youtube/v3/search?key=${options.key}&part=snippet`,
     type: 'GET',
-    options: {
-      query: options,
-      max: 5,
-      key: ytKey
+    data: {
+      q: options.query,
+      maxResults: options.max,
+      key: options.key,
+      type: 'video',
+      videoEmbeddable: 'true'
     },
     contentType: 'application/json',
-    success: callback,
+    success: function(data) {
+      callback(data.items);
+      //console.log(data.items);
+    },
     error: function(error) {
       console.error('yt Failed', error);
     }
@@ -17,6 +23,12 @@ var searchYouTube = (options, callback) => {
 
 };
 
-searchYouTube('funny cats', () => console.log('success'));
+// searchYouTube({
+//   key: YOUTUBE_API_KEY,
+//   query: 'react',
+//   max: 5
+// }, (data) => {console.log(data)});
 
 export default searchYouTube;
+
+
