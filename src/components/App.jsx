@@ -3,25 +3,31 @@ import exampleVideoData from '../data/exampleVideoData.js';
 import fakeVideoData from '../../spec/data/fakeVideoData.js';
 import VideoPlayer from './VideoPlayer.js';
 import VideoListEntry from './VideoListEntry.js';
+import searchYoutube from '../lib/searchYoutube.js';
+import YOUTUBE_API_KEY from '../config/youtube.js';
 
-window.video = exampleVideoData[0];
+
+
+
 
 class App extends React.Component {
 
   constructor(props) {
     super(props);
+    props.searchYouTube({key: YOUTUBE_API_KEY, query: 'cat', max: 5}, () => {});
     this.state = {
-      video: exampleVideoData[0]
+      video: fakeVideoData[0],
+      videos: fakeVideoData
     };
     this.test = this.test.bind(this);
   }
+
 
   test(video) {
     this.setState({
       video: video,
     });
   }
-
 
 
   render() {
@@ -39,7 +45,7 @@ class App extends React.Component {
           </div>
           <div className="col-md-5">
             <div>
-              <VideoList videos={exampleVideoData} func={this.test}>
+              <VideoList videos={this.state.videos} func={this.test}>
               </VideoList>
             </div>
           </div>

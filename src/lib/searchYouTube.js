@@ -14,7 +14,6 @@ var searchYouTube = (options, callback) => {
     contentType: 'application/json',
     success: function(data) {
       callback(data.items);
-      //console.log(data.items);
     },
     error: function(error) {
       console.error('yt Failed', error);
