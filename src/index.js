@@ -2,4 +2,6 @@
 import App from './components/App.js';
 import searchYouTube from './lib/searchYoutube.js';
 
-ReactDOM.render(<App searchYouTube={searchYouTube}/>, document.getElementById('app'));
+let test = _.debounce(searchYouTube, 500);
+
+ReactDOM.render(<App searchYouTube={test}/>, document.getElementById('app'));
